@@ -16,7 +16,7 @@ CREATE TABLE persons (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE adresses (
+CREATE TABLE addresses (
     id SMALLINT UNSIGNED AUTO_INCREMENT,
     address VARCHAR(38) NOT NULL,
     zip_code CHAR(5) NOT NULL,
@@ -34,8 +34,14 @@ VALUES
 ('Hugo', 'Victor', 'Ecrivain'), ('Sand', 'Georges', 'Ecrivain'), 
 ('Lovelace', 'Ada', 'Informaticienne'), ('Hopper', 'Grace', 'Informaticienne');
 
-INSERT INTO adresses (address, zip_code, city, person_id)
+INSERT INTO addresses (address, zip_code, city, person_id)
 VALUES
 ('5 rue Orfila', '75020', 'Paris', 1),
 ('148 rue de Picpus', '75012', 'Paris', 2),
 ('3 rue Calixte XII', '25440', 'Quingey', 3);
+
+-- Création de la vue pour simplifier les requêtes sur les personnes
+CREATE OR REPLACE VIEW view_persons AS
+SELECT  p.id, person_name, first_name, zip_code, city
+        , CONCAT_WS(' ', first_name, person_name) as full_name
+        FROM persons AS p LEFT JOIN addresses ON p.id = person_id;

@@ -2,8 +2,7 @@
 
 //Requête sur l'ensemble des personnes
 $pdo = getPDO();
-$sql = "SELECT p.id, person_name, first_name, zip_code, city
-        FROM persons AS p JOIN adresses ON p.id = person_id";
+$sql = "SELECT * FROM view_persons";
 
 $request = $pdo->query($sql);
 
