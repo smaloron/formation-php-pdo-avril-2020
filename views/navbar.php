@@ -9,12 +9,11 @@
     <!-- Liste des liens de la navbar -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item <?= $controller=="personList"?"active":"" ?>">
-                <a class="nav-link" href="/?page=personList">Liste des personnes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
+            <?php foreach($navbarLinks as $label => $link): ?>
+                <li class="nav-item <?= $controller==$link?"active":"" ?>">
+                    <a class="nav-link" href="/?page=<?= $link ?>"><?= $label ?></a>
+                </li>
+            <?php endforeach ?>
         </ul>
     </div>
 </nav>
