@@ -7,6 +7,15 @@ CREATE DATABASE formation_php
 
 USE formation_php;
 
+-- table des utilisateurs
+CREATE TABLE users (
+    id INT UNSIGNED AUTO_INCREMENT,
+    user_email VARCHAR(50) UNIQUE NOT NULL,
+    user_password VARCHAR(128) NOT NULL,
+    user_name VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 -- table des professions
 CREATE TABLE professions (
     id TINYINT UNSIGNED AUTO_INCREMENT,
