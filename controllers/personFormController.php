@@ -1,4 +1,7 @@
 <?php
+//Instance de PDO utilisée pour l'insertion d'une personne 
+//et également pour la récupération de la liste des professions
+$pdo = getPDO();
 
 //Le formulaire a-t-il été envoyé
 $isPosted = filter_has_var(INPUT_POST, "submit");
@@ -10,12 +13,11 @@ if($isPosted){
     $address = filter_input(INPUT_POST, "address", 
                             FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
 
-
     //Insertion dans la base de données
-    $pdo = getPDO();
+
     //insertion de la personne
 
-    $sql = "INSERT INTO persons (first_name, person_name, profession)
+    $sql = "INSERT INTO persons (first_name, person_name, profession_id)
             VALUES (:firstName, :personName, :profession)";
     
     $statement = $pdo->prepare($sql);
@@ -39,6 +41,10 @@ if($isPosted){
 }
 
 
+//Récupération de la liste des professions
+$sql = "SELECT id, profession_name FROM professions";
+$request = $pdo->query($sql);
+$professionList = $request->fetchAll();
 
 
 //Affichage du formulaire

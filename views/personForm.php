@@ -17,7 +17,13 @@
 
             <div class="form-group">
                 <label>Profession</label>
-                <input type="text" class="form-control" name="person[profession]">
+                <select class="form-control" name="person[profession]">
+                    <?php foreach ($professionList as $profession): ?>
+                        <option value="<?= $profession["id"] ?>">
+                            <?= $profession["profession_name"] ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
             </div>
 
         </fieldset>
