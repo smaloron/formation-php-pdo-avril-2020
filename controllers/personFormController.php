@@ -15,6 +15,29 @@ if($isPosted){
 
     //Insertion dans la base de données
 
+    //Gestion de la profession
+
+    // Rechercher l'id de la profession saisie
+    $sql = "SELECT id FROM professions WHERE profession_name=?";
+    $statement = $pdo->prepare($sql);
+    $statement->execute([$person["profession"]]);
+    $result = $statement->fetch();
+
+    //Si id est null alors on insère la nouvelle profession
+    //puis on récupère l'id généré pour l'affecter à $person["profession"]
+    if($result === false){
+        $sql = "INSERT INTO professions (profession_name) VALUES (?)";
+        $statement = $pdo->prepare($sql);
+        $statement->execute([$person["profession"]]);
+
+        $person["profession"] = $pdo->lastInsertId();
+
+    } else {
+        //Si id pas null alors on attribue la valeur de cet id à $person["profession"]
+        $person["profession"] = $result["id"];
+    }
+
+
     //insertion de la personne
 
     $sql = "INSERT INTO persons (first_name, person_name, profession_id)

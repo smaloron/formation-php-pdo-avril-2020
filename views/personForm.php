@@ -17,13 +17,16 @@
 
             <div class="form-group">
                 <label>Profession</label>
-                <select class="form-control" name="person[profession]">
+                <input  type="text" 
+                        class="form-control" name="person[profession]" 
+                        list="professions">
+
+                <datalist id="professions">
                     <?php foreach ($professionList as $profession): ?>
-                        <option value="<?= $profession["id"] ?>">
-                            <?= $profession["profession_name"] ?>
-                        </option>
+                        <option value="<?= $profession["profession_name"] ?>"></option>
                     <?php endforeach ?>
-                </select>
+                </datalist>
+
             </div>
 
         </fieldset>
