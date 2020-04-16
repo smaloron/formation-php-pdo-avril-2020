@@ -38,11 +38,9 @@ if($isPosted){
         $statement = $pdo->prepare($sql);
         $statement->execute($params);
 
-        
+
 
     }
-
-
 }
 
 $pageTitle = "Inscription";

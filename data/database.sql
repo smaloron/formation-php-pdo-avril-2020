@@ -1,11 +1,11 @@
 -- Suppression de la base de données si elle existe
-DROP DATABASE IF EXISTS formation_php;
+DROP DATABASE IF EXISTS `m2i-smaloron_formation`;
 
 -- Création de la base de données
-CREATE DATABASE formation_php 
+CREATE DATABASE `m2i-smaloron_formation` 
     DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-USE formation_php;
+USE `m2i-smaloron_formation`;
 
 -- table des utilisateurs
 CREATE TABLE users (
